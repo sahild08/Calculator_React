@@ -6,7 +6,17 @@ function App() {
 
   // Function to handle button clicks
   const handleClick = (value) => {
-    setInput(input + value);
+    // If the user clicked the percentage button
+    if (value === "%") {
+      try {
+        setInput((parseFloat(input) / 100).toString());
+      } catch (error) {
+        setInput("Error");
+      }
+    } else {
+      // For other values, append to the input
+      setInput(input + value);
+    }
   };
 
   // Function to handle clearing the input
@@ -41,6 +51,7 @@ function App() {
         <button onClick={() => handleClick("-")}>-</button>
         <button onClick={() => handleClick("*")}>*</button>
         <button onClick={() => handleClick("/")}>/</button>
+        <button onClick={() => handleClick("%")}>%</button>
         <button onClick={handleClear}>C</button>
         <button onClick={handleCalculate}>=</button>
       </div>
